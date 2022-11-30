@@ -37,6 +37,9 @@ require('packer').startup(function(use)
     end,
   }
 
+  -- gitsigns.nvim: git decorations
+  use 'lewis6991/gitsigns.nvim'
+
   -- markdown-preview
   use({
     "iamcco/markdown-preview.nvim",

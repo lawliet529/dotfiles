@@ -29,3 +29,6 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- gitsigns
+require('gitsigns').setup()
