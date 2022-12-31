@@ -40,6 +40,9 @@ require('packer').startup(function(use)
   -- gitsigns.nvim: git decorations
   use 'lewis6991/gitsigns.nvim'
 
+  -- diffview.nvim
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- markdown-preview
   use({
     "iamcco/markdown-preview.nvim",
