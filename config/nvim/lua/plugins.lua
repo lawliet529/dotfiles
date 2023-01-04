@@ -19,9 +19,6 @@ require('packer').startup(function(use)
   -- Nord theme
   use 'arcticicestudio/nord-vim'
 
-  -- Github Copilot
-  use 'github/copilot.vim'
-
   -- nvim-tree & nvim-web-devicons
   use 'nvim-tree/nvim-web-devicons'
 
