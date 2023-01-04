@@ -1,5 +1,7 @@
 -- Set line numbers
 vim.opt.number = true
+-- Set linebreak
+vim.opt.linebreak = true
 -- Highlight current line
 vim.opt.cursorline = true
 -- Use spaces instead of tabs
