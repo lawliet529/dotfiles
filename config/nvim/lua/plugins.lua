@@ -34,6 +34,9 @@ require('packer').startup(function(use)
     end,
   }
 
+  -- rainbow_csv: CSV highlighting
+  use 'mechatroner/rainbow_csv'
+
   -- gitsigns.nvim: git decorations
   use 'lewis6991/gitsigns.nvim'
 
