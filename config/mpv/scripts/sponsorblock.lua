@@ -46,7 +46,7 @@ local options = {
     server_fallback = true,
 
     -- Create chapters at sponsor boundaries for OSC display and manual skipping
-    make_chapters = true,
+    make_chapters = false,
 
     -- Minimum duration for sponsors (in seconds), segments under that threshold will be ignored
     min_duration = 1,
