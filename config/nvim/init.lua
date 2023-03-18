@@ -32,5 +32,8 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- vimtex
+vim.g.vimtex_view_method = 'zathura'
+
 -- gitsigns
 require('gitsigns').setup()
