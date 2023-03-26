@@ -11,10 +11,6 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
--- Allow moving the cursor through long soft-wrapped lines
-vim.api.nvim_set_keymap('n', 'j', 'v:count ? "j" : "gj"', { noremap = true, silent = true, expr = true })
-vim.api.nvim_set_keymap('n', 'k', 'v:count ? "k" : "gk"', { noremap = true, silent = true, expr = true })
-
 if require('plugins') then return end
 
 -- Set colorscheme
