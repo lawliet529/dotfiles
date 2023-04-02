@@ -14,10 +14,8 @@ vim.opt.softtabstop = 2
 if require('plugins') then return end
 
 -- Set colorscheme
-vim.opt.termguicolors = true
-vim.g.nord_cursor_line_number_background = 1
-vim.g.nord_uniform_diff_background = 1
-vim.cmd('colorscheme nord')
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
 
 -- Set statusline
 require('lualine').setup()

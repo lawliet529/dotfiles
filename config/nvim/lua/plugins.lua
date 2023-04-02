@@ -16,8 +16,8 @@ require('packer').startup(function(use)
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
-  -- Nord theme
-  use 'arcticicestudio/nord-vim'
+  -- gruvbox.nvim
+  use 'ellisonleao/gruvbox.nvim'
 
   -- nvim-tree & nvim-web-devicons
   use 'nvim-tree/nvim-web-devicons'
