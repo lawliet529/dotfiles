@@ -16,8 +16,8 @@ require('packer').startup(function(use)
   -- Manage packer itself
   use 'wbthomason/packer.nvim'
 
-  -- gruvbox.nvim
-  use 'ellisonleao/gruvbox.nvim'
+  -- onedark.nvim
+  use 'navarasu/onedark.nvim'
 
   -- nvim-tree & nvim-web-devicons
   use 'nvim-tree/nvim-web-devicons'

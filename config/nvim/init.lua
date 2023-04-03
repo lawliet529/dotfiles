@@ -14,8 +14,7 @@ vim.opt.softtabstop = 2
 if require('plugins') then return end
 
 -- Set colorscheme
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+require('onedark').load()
 
 -- Set statusline
 require('lualine').setup()
