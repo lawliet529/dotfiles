@@ -1,9 +1,26 @@
 [user]
 	email = 85656044+Lawliet529@users.noreply.github.com
 	name = Lawliet529
+
 [core]
 	editor = nvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
 [init]
 	defaultBranch = main
+
 [alias]
 	ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
