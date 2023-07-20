@@ -11,6 +11,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
+vim.opt.termguicolors = true
+
 if require('plugins') then return end
 
 -- Set colorscheme
@@ -19,6 +21,11 @@ require('onedark').load()
 -- Set statusline
 require('lualine').setup()
 vim.opt.showmode = false -- Hide mode
+
+-- nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
 
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {

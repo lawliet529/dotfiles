@@ -20,7 +20,12 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim'
 
   -- nvim-tree & nvim-web-devicons
-  use 'nvim-tree/nvim-web-devicons'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    }
+  }
 
   -- lualine: statusline
   use 'nvim-lualine/lualine.nvim'
