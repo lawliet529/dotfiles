@@ -54,4 +54,4 @@ vm.oom_kill_allocating_task = 1
 
 [Relevant askUbuntu post](https://askubuntu.com/questions/398236/oom-killer-not-working)
 
-Additionally, enable `earlyoom` to terminate tasks early, before OOM is triggered.
+Optionally, enable `earlyoom` to terminate tasks early, before OOM is triggered.
