@@ -1,0 +1,17 @@
+[Unit]
+Description=FreshRSS container
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=freshrss
+Image=freshrss/freshrss
+PublishPort=8095:80
+Environment='TZ=Asia/Bangkok'
+Environment='CRON_MIN=1,31'
+Volume=freshrss_data:/var/www/FreshRSS/data
+Volume=freshrss_extensions:/var/www/FreshRSS/extensions
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
