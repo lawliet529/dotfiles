@@ -5,7 +5,7 @@ After=network-online.target
 
 [Container]
 ContainerName=freshrss
-Image=freshrss/freshrss
+Image=docker.io/freshrss/freshrss:latest
 PublishPort=8095:80
 Environment='TZ=Asia/Bangkok'
 Environment='CRON_MIN=1,31'
