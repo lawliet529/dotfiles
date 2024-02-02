@@ -1,0 +1,5 @@
+directory: /jellyfin/Music
+library: /jellyfin/beets.db
+import:
+  move: yes
+plugins: fetchart lastgenre
