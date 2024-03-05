@@ -2,4 +2,4 @@ directory: /jellyfin/Music
 library: /jellyfin/beets.db
 import:
   move: yes
-plugins: deezer fetchart lastgenre missing
+plugins: deezer spotify fetchart lastgenre missing
