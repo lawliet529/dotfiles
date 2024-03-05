@@ -1,2 +1,4 @@
 **/nvim/plugin/packer_compiled.lua
 **/mpv/watch_later
+**/beets/spotify_token.json
+**/beets/state.pickle
