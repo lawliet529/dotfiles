@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-yt-dlp -f ba --remux-video ogg --embed-metadata -P $HOME/Music -o "%(playlist)s/%(playlist_index)s %(title)s.%(ext)s" $@
+yt-dlp -f ba --remux-video ogg --embed-metadata -P /tmp/ytm-dlp -o "%(playlist)s/%(playlist_index)s %(title)s.%(ext)s" $@
 
-beet import $HOME/Music/
+beet import /tmp/ytm-dlp
