@@ -58,10 +58,13 @@ in
         #
         # For instance, for IPython, these can be found using:
         # `LD_DEBUG=libs ipython --pylab`
-        xorg.libSM
-        xorg.libICE
-        xorg.libXrender
+        libGL
         libselinux
+        libz
+        xorg.libICE
+        xorg.libSM
+        xorg.libXcursor
+        xorg.libXrender
 
         # Just in case one installs a package with pip instead of mamba and pip
         # needs to compile some C sources
