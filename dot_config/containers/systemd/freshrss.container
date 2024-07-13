@@ -7,7 +7,6 @@ After=network-online.target
 ContainerName=freshrss
 Image=docker.io/freshrss/freshrss:latest
 PublishPort=22222:80
-Environment='TZ=Asia/Bangkok'
 Environment='CRON_MIN=1,31'
 Volume=freshrss_data:/var/www/FreshRSS/data
 Volume=freshrss_extensions:/var/www/FreshRSS/extensions
