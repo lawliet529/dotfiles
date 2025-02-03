@@ -34,6 +34,7 @@ zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion.
 # completion must be sourced after all modules that add completion definitions.
 zmodule completion
+zmodule ohmyzsh/ohmyzsh --root plugins/command-not-found
 
 #
 # Modules that must be initialized last
