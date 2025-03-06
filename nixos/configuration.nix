@@ -228,6 +228,8 @@
       STOP_CHARGE_THRESH_BAT0 = 80;
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
+
+      USB_DENYLIST = "046d:c542";
     };
   };
 
@@ -329,6 +331,7 @@
       jdk17
       jetbrains.idea-community
       kitty
+      libossp_uuid
       linux-wifi-hotspot
       lzip
       maven
