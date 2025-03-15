@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 let
 
@@ -33,58 +35,62 @@ let
 
   # Wrap mambaforge installer so that it is non-interactive and installs into the
   # path specified by installationPath
-  mamba = pkgs.runCommand "mamba-install"
-    { buildInputs = [ pkgs.makeWrapper mambaforgeScript ]; }
-    ''
-      mkdir -p $out/bin
-      makeWrapper                            \
-        ${mambaforgeScript}/mambaforge.sh      \
-        $out/bin/mamba-install               \
-        --add-flags "-p ${installationPath}" \
-        --add-flags "-b"
-    '';
+  mamba =
+    pkgs.runCommand "mamba-install"
+      {
+        buildInputs = [
+          pkgs.makeWrapper
+          mambaforgeScript
+        ];
+      }
+      ''
+        mkdir -p $out/bin
+        makeWrapper                            \
+          ${mambaforgeScript}/mambaforge.sh      \
+          $out/bin/mamba-install               \
+          --add-flags "-p ${installationPath}" \
+          --add-flags "-b"
+      '';
 
 in
-(
-  pkgs.buildFHSUserEnv {
-    name = "mamba";
-    targetPkgs = pkgs: (
-      with pkgs; [
+(pkgs.buildFHSUserEnv {
+  name = "mamba";
+  targetPkgs =
+    pkgs:
+    (with pkgs; [
 
-        mamba
+      mamba
 
-        # Add here libraries that Mamba packages require but aren't provided by
-        # Mamba because it assumes that the system has them.
-        #
-        # For instance, for IPython, these can be found using:
-        # `LD_DEBUG=libs ipython --pylab`
-        libGL
-        libselinux
-        libz
-        xorg.libICE
-        xorg.libSM
-        xorg.libXcursor
-        xorg.libXrender
+      # Add here libraries that Mamba packages require but aren't provided by
+      # Mamba because it assumes that the system has them.
+      #
+      # For instance, for IPython, these can be found using:
+      # `LD_DEBUG=libs ipython --pylab`
+      libGL
+      libselinux
+      libz
+      xorg.libICE
+      xorg.libSM
+      xorg.libXcursor
+      xorg.libXrender
 
-        # Just in case one installs a package with pip instead of mamba and pip
-        # needs to compile some C sources
-        gcc
+      # Just in case one installs a package with pip instead of mamba and pip
+      # needs to compile some C sources
+      gcc
 
-        # Add any other packages here, for instance:
-        emacs
-        git
+      # Add any other packages here, for instance:
+      emacs
+      git
 
-      ]
-    );
-    profile = ''
-      # Add mamba to PATH
-      export PATH=${installationPath}/bin:$PATH
-      # Paths for gcc if compiling some C sources with pip
-      export NIX_CFLAGS_COMPILE="-I${installationPath}/include"
-      export NIX_CFLAGS_LINK="-L${installationPath}lib"
-      # Some other required environment variables
-      export FONTCONFIG_FILE=/etc/fonts/fonts.conf
-      export QTCOMPOSE=${pkgs.xorg.libX11}/share/X11/locale
-    '';
-  }
-).env
+    ]);
+  profile = ''
+    # Add mamba to PATH
+    export PATH=${installationPath}/bin:$PATH
+    # Paths for gcc if compiling some C sources with pip
+    export NIX_CFLAGS_COMPILE="-I${installationPath}/include"
+    export NIX_CFLAGS_LINK="-L${installationPath}lib"
+    # Some other required environment variables
+    export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+    export QTCOMPOSE=${pkgs.xorg.libX11}/share/X11/locale
+  '';
+}).env

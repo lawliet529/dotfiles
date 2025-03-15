@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 let
 
@@ -33,55 +35,59 @@ let
 
   # Wrap miniconda installer so that it is non-interactive and installs into the
   # path specified by installationPath
-  conda = pkgs.runCommand "conda-install"
-    { buildInputs = [ pkgs.makeWrapper minicondaScript ]; }
-    ''
-      mkdir -p $out/bin
-      makeWrapper                            \
-        ${minicondaScript}/miniconda.sh      \
-        $out/bin/conda-install               \
-        --add-flags "-p ${installationPath}" \
-        --add-flags "-b"
-    '';
+  conda =
+    pkgs.runCommand "conda-install"
+      {
+        buildInputs = [
+          pkgs.makeWrapper
+          minicondaScript
+        ];
+      }
+      ''
+        mkdir -p $out/bin
+        makeWrapper                            \
+          ${minicondaScript}/miniconda.sh      \
+          $out/bin/conda-install               \
+          --add-flags "-p ${installationPath}" \
+          --add-flags "-b"
+      '';
 
 in
-(
-  pkgs.buildFHSUserEnv {
-    name = "conda";
-    targetPkgs = pkgs: (
-      with pkgs; [
+(pkgs.buildFHSUserEnv {
+  name = "conda";
+  targetPkgs =
+    pkgs:
+    (with pkgs; [
 
-        conda
+      conda
 
-        # Add here libraries that Conda packages require but aren't provided by
-        # Conda because it assumes that the system has them.
-        #
-        # For instance, for IPython, these can be found using:
-        # `LD_DEBUG=libs ipython --pylab`
-        xorg.libSM
-        xorg.libICE
-        xorg.libXrender
-        libselinux
+      # Add here libraries that Conda packages require but aren't provided by
+      # Conda because it assumes that the system has them.
+      #
+      # For instance, for IPython, these can be found using:
+      # `LD_DEBUG=libs ipython --pylab`
+      xorg.libSM
+      xorg.libICE
+      xorg.libXrender
+      libselinux
 
-        # Just in case one installs a package with pip instead of conda and pip
-        # needs to compile some C sources
-        gcc
+      # Just in case one installs a package with pip instead of conda and pip
+      # needs to compile some C sources
+      gcc
 
-        # Add any other packages here, for instance:
-        emacs
-        git
+      # Add any other packages here, for instance:
+      emacs
+      git
 
-      ]
-    );
-    profile = ''
-      # Add conda to PATH
-      export PATH=${installationPath}/bin:$PATH
-      # Paths for gcc if compiling some C sources with pip
-      export NIX_CFLAGS_COMPILE="-I${installationPath}/include"
-      export NIX_CFLAGS_LINK="-L${installationPath}lib"
-      # Some other required environment variables
-      export FONTCONFIG_FILE=/etc/fonts/fonts.conf
-      export QTCOMPOSE=${pkgs.xorg.libX11}/share/X11/locale
-    '';
-  }
-).env
+    ]);
+  profile = ''
+    # Add conda to PATH
+    export PATH=${installationPath}/bin:$PATH
+    # Paths for gcc if compiling some C sources with pip
+    export NIX_CFLAGS_COMPILE="-I${installationPath}/include"
+    export NIX_CFLAGS_LINK="-L${installationPath}lib"
+    # Some other required environment variables
+    export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+    export QTCOMPOSE=${pkgs.xorg.libX11}/share/X11/locale
+  '';
+}).env
