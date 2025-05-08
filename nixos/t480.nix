@@ -15,5 +15,8 @@
     ];
   };
 
-  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ]; # Glass trackpad
+  boot.kernelParams = [
+    "psmouse.synaptics_intertouch=0"
+    "i915.enable_psr=0"
+  ];
 }

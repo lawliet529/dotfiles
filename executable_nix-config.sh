@@ -15,7 +15,7 @@ if cmp -s /etc/nixos/configuration.nix /tmp/nixos/configuration.nix; then
 else
   echo "Changes detected."
   diff --color=auto -U0 /etc/nixos/configuration.nix /tmp/nixos/configuration.nix
-  cp /etc/nixos/configuration.nix /tmp/nixos/configuration.$(date +%s)$$.nix
+  cp /etc/nixos/configuration.nix /tmp/nixos/configuration.$(date +%s).nix
   echo "Writing to /etc/nixos/configuration.nix..."
   sudo cp /tmp/nixos/configuration.nix /etc/nixos/configuration.nix && echo "New config written to /etc/nixos/configuration.nix" \
   && read -p "Run nixos-rebuild? (Y/n): " confirm \

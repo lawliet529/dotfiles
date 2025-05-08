@@ -2,4 +2,7 @@ directory: ~/Music
 library: ~/Music/beets.db
 import:
   move: yes
-plugins: deezer spotify fetchart lastgenre missing
+plugins: deezer spotify fetchart lastgenre missing lyrics
+lyrics:
+  sources: lrclib
+  synced: yes

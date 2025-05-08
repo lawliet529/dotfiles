@@ -228,8 +228,6 @@
       STOP_CHARGE_THRESH_BAT0 = 80;
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
-
-      USB_DENYLIST = "046d:c542";
     };
   };
 
@@ -291,6 +289,9 @@
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
+      signal-desktop
+      nvtopPackages.intel
+      libreoffice
       age
       alacritty
       android-tools
@@ -299,12 +300,14 @@
       aria2
       asciiquarium
       bat
-      beets-unstable
+      beets
+      bitwarden-cli
       btop
       cbonsai
       chezmoi
       cmake
       cmatrix
+      croc
       delta
       devenv
       direnv
@@ -325,11 +328,14 @@
       gnumake
       gnupg
       haveged
+      home-manager
       htop
       immich-cli
       inetutils
-      jdk17
-      jetbrains.idea-community
+      jdk
+      jetbrains.idea-ultimate
+      jq
+      keepassxc
       kitty
       libossp_uuid
       linux-wifi-hotspot
@@ -337,6 +343,7 @@
       maven
       mediainfo
       micromamba
+      monero-gui
       mpv
       ncdu
       neo
@@ -348,6 +355,7 @@
       nmap
       nodejs
       nvme-cli
+      obs-studio
       obsidian
       openssl
       qbittorrent
@@ -358,15 +366,14 @@
       patroni
       pciutils
       piper
-      pnpm
       postgresql_16
-      postman
       putty
       python3
       rclone
-      rustdesk
+      ripgrep
       samba
       sqlite
+      kompose
       sshfs
       starship
       tldr
@@ -379,7 +386,6 @@
       wezterm
       wget
       wl-clipboard
-      yarn
       yt-dlp
       zip
     ])
