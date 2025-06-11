@@ -19,6 +19,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    #./gnome.nix
     ./plasma.nix
   ];
 
@@ -184,14 +185,6 @@
       ]);
   };
 
-  documentation.nixos.enable = false;
-
-  services.jellyfin = {
-    enable = false;
-    openFirewall = true;
-    user = "dat";
-  };
-
   services.cron.enable = true;
 
   # Configure keymap in X11
@@ -273,6 +266,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "kubernetes"
     ];
     packages = (with pkgs; [ ]) ++ (with pkgs-unstable; [ ]);
     shell = pkgs.zsh;
@@ -285,13 +279,30 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  services.sunshine.enable = true;
+  services.sunshine.autoStart = false;
+  services.sunshine.capSysAdmin = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
-      signal-desktop
+      nodejs
+      yarn
+      pnpm
+      mpv
+      tmux
+      compsize
+      gh
+      hdparm
+      mkvtoolnix
+      charls
+      dcmtk
+      lsof
+      jetbrains.datagrip
+      distrobox
+      imagemagick
       nvtopPackages.intel
-      libreoffice
       age
       alacritty
       android-tools
@@ -305,12 +316,9 @@
       btop
       cbonsai
       chezmoi
-      cmake
       cmatrix
       croc
       delta
-      devenv
-      direnv
       dig
       dmidecode
       du-dust
@@ -321,9 +329,6 @@
       ffmpegthumbnailer
       file
       firefox
-      gcc
-      gh
-      gimp
       glab
       gnumake
       gnupg
@@ -332,28 +337,20 @@
       htop
       immich-cli
       inetutils
-      jdk
       jetbrains.idea-ultimate
       jq
-      keepassxc
-      kitty
       libossp_uuid
       linux-wifi-hotspot
       lzip
-      maven
       mediainfo
       micromamba
-      monero-gui
-      mpv
       ncdu
       neo
       neovim
       nfs-utils
-      ninja
       nix-output-monitor
       nixfmt-rfc-style
       nmap
-      nodejs
       nvme-cli
       obs-studio
       obsidian
@@ -366,30 +363,29 @@
       patroni
       pciutils
       piper
-      postgresql_16
+      postgresql
       putty
       python3
       rclone
       ripgrep
       samba
       sqlite
-      kompose
       sshfs
       starship
       tldr
       tor-browser
       tree
-      treefmt2
+      treefmt
       unzip
       usbutils
       vscode
       wezterm
       wget
       wl-clipboard
-      yt-dlp
       zip
     ])
     ++ (with pkgs-unstable; [
+      yt-dlp
     ]);
 
   programs = {
@@ -435,6 +431,7 @@
   programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     80
     443
@@ -451,4 +448,5 @@
   ];
 
   services.ratbagd.enable = true;
+  programs.direnv.enable = true;
 }

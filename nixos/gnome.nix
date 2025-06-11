@@ -12,19 +12,22 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   environment.gnome.excludePackages =
-    (with pkgs; [ gnome-tour ])
-    ++ (with pkgs.gnome; [
+    (with pkgs; [
+      gnome-tour
       gnome-software
       gnome-music
       epiphany # web browser
       geary # email reader
       totem # video player
+    ])
+
+    ++ (with pkgs.gnome; [
     ]);
 
   environment.systemPackages = with pkgs; [
     adw-gtk3
-    gnome.gnome-tweaks
-    gnome.zenity
+    gnome-tweaks
+    zenity
     (papirus-icon-theme.override { color = "adwaita"; })
   ];
 }
