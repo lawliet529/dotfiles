@@ -90,6 +90,7 @@
   };
 
   fonts.packages = with pkgs; [
+    corefonts
     cantarell-fonts
     fira-code
     fira-code-symbols
@@ -214,7 +215,7 @@
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 30;
+      CPU_MAX_PERF_ON_BAT = 50;
 
       #Optional helps save long term battery health
       START_CHARGE_THRESH_BAT0 = 75;
@@ -287,6 +288,13 @@
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
+      s3cmd
+      minio-client
+      dbeaver-bin
+      intel-gpu-tools
+      unrar-wrapper
+      code-cursor
+      maven
       nodejs
       yarn
       pnpm
@@ -385,6 +393,7 @@
       zip
     ])
     ++ (with pkgs-unstable; [
+      claude-code
       yt-dlp
     ]);
 
@@ -449,4 +458,9 @@
 
   services.ratbagd.enable = true;
   programs.direnv.enable = true;
+  programs.java.enable = true;
+  programs.java.package = pkgs.jdk17;
+
+  programs.zoxide.enable = true;
+  programs.zoxide.enableZshIntegration = true;
 }

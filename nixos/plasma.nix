@@ -23,7 +23,11 @@
     fcitx5.waylandFrontend = true;
   };
 
-  environment.systemPackages = (with pkgs; [ ]);
+  environment.systemPackages = (
+    with pkgs;
+    [
+    ]
+  );
 
   hardware.bluetooth.enable = true;
 
