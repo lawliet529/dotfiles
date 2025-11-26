@@ -201,7 +201,7 @@
 
   services.power-profiles-daemon.enable = false;
 
-  powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = false;
 
   services.tlp = {
     enable = true;
@@ -268,6 +268,7 @@
       "networkmanager"
       "wheel"
       "kubernetes"
+      "adbusers"
     ];
     packages = (with pkgs; [ ]) ++ (with pkgs-unstable; [ ]);
     shell = pkgs.zsh;
@@ -288,12 +289,17 @@
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
+      google-chrome
+      trash-cli
+      linuxquota
+      woff2
+      kitty
+      python312Packages.faker
+      gcc
       s3cmd
       minio-client
-      dbeaver-bin
       intel-gpu-tools
       unrar-wrapper
-      code-cursor
       maven
       nodejs
       yarn
@@ -307,7 +313,6 @@
       charls
       dcmtk
       lsof
-      jetbrains.datagrip
       distrobox
       imagemagick
       nvtopPackages.intel
@@ -345,7 +350,6 @@
       htop
       immich-cli
       inetutils
-      jetbrains.idea-ultimate
       jq
       libossp_uuid
       linux-wifi-hotspot
@@ -361,9 +365,7 @@
       nmap
       nvme-cli
       obs-studio
-      obsidian
       openssl
-      qbittorrent
       quickemu
       p7zip
       pandoc
@@ -379,9 +381,7 @@
       samba
       sqlite
       sshfs
-      starship
       tldr
-      tor-browser
       tree
       treefmt
       unzip
@@ -455,6 +455,7 @@
       to = 65535;
     }
   ];
+  networking.extraHosts = '''';
 
   services.ratbagd.enable = true;
   programs.direnv.enable = true;
@@ -463,4 +464,11 @@
 
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;
+
+  programs.adb.enable = true;
+
+  services.udev.packages = [
+    pkgs.via
+    pkgs.qmk-udev-rules
+  ];
 }
