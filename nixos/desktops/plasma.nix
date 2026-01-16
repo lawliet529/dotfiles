@@ -7,7 +7,7 @@
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
 
-  environment.plasma6.excludePackages = with pkgs.libsForQt5; [
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
     discover
     plasma-browser-integration
     oxygen
@@ -17,7 +17,7 @@
     enable = true;
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
-      fcitx5-unikey
+      qt6Packages.fcitx5-unikey
       fcitx5-gtk
     ];
     fcitx5.waylandFrontend = true;

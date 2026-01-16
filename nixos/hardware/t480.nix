@@ -10,7 +10,7 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiIntel
+      intel-vaapi-driver
       intel-compute-runtime
     ];
   };

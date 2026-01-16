@@ -19,8 +19,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #./desktops/gnome.nix
-    ./desktops/plasma.nix
+    ./desktop.nix
   ];
 
   nix.settings.experimental-features = [
@@ -89,26 +88,11 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  fonts.packages = with pkgs; [
-    corefonts
-    cantarell-fonts
-    fira-code
-    fira-code-symbols
-    iosevka
-    jetbrains-mono
-    liberation_ttf
-    libertine
-    meslo-lgs-nf
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    redhat-official-fonts
-    roboto
-  ];
-
   zramSwap = {
     enable = true;
     memoryPercent = 100;
+    priority = 100;
+    algorithm = "zstd";
   };
   boot.kernel.sysctl = {
     "vm.swappiness" = 180;
@@ -156,12 +140,19 @@
         libGL
         libGLU
         libpulseaudio
+        libxcb
+        libxcb-image
+        libxcb-keysyms
+        libxcb-render-util
+        libxcb-util
+        libxcb-wm
         libxkbcommon
         mesa
         nspr
         nss
         openssl
         pango
+        pcre2
         stdenv.cc.cc
         stdenv.cc.cc.lib
         xcb-util-cursor
@@ -239,24 +230,6 @@
 
   services.fwupd.enable = true;
 
-  services.flatpak.enable = true;
-
-  # Enable sound with pipewire.
-  #hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -274,27 +247,17 @@
     shell = pkgs.zsh;
   };
 
-  nixpkgs.overlays = [
-    (self: super: { mpv = super.mpv.override { scripts = with self.mpvScripts; [ mpris ]; }; })
-  ];
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  services.sunshine.enable = true;
-  services.sunshine.autoStart = false;
-  services.sunshine.capSysAdmin = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
-      wkhtmltopdf
-      google-chrome
+      gemini-cli-bin
       trash-cli
       linuxquota
       woff2
-      kitty
       python312Packages.faker
       gcc
       s3cmd
@@ -305,7 +268,6 @@
       nodejs
       yarn
       pnpm
-      mpv
       tmux
       compsize
       gh
@@ -318,7 +280,6 @@
       imagemagick
       nvtopPackages.intel
       age
-      alacritty
       android-tools
       apacheHttpd
       appimage-run
@@ -335,14 +296,13 @@
       delta
       dig
       dmidecode
-      du-dust
+      dust
       duf
       fastfetch
       fd
       ffmpeg
       ffmpegthumbnailer
       file
-      firefox
       glab
       gnumake
       gnupg
@@ -356,7 +316,6 @@
       linux-wifi-hotspot
       lzip
       mediainfo
-      micromamba
       ncdu
       neo
       neovim
@@ -365,15 +324,12 @@
       nixfmt-rfc-style
       nmap
       nvme-cli
-      obs-studio
       openssl
-      quickemu
       p7zip
       pandoc
       pass
       patroni
       pciutils
-      piper
       postgresql
       putty
       python3
@@ -387,14 +343,11 @@
       treefmt
       unzip
       usbutils
-      vscode
-      wezterm
       wget
       wl-clipboard
       zip
     ])
     ++ (with pkgs-unstable; [
-      claude-code
       yt-dlp
     ]);
 
@@ -456,9 +409,8 @@
       to = 65535;
     }
   ];
-  networking.extraHosts = '''';
+  networking.extraHosts = "";
 
-  services.ratbagd.enable = true;
   programs.direnv.enable = true;
   programs.java.enable = true;
   programs.java.package = pkgs.jdk17;
