@@ -1,0 +1,6 @@
+[tools]
+node = "lts"
+yarn = "1"
+pnpm = "latest"
+claude-code = "latest"
+gemini = "latest"

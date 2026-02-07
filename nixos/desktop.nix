@@ -47,20 +47,7 @@
 
   environment.systemPackages =
     (with pkgs; [
-      jetbrains.idea
-      google-chrome
-      wkhtmltopdf
-      kitty
-      mpv
-      alacritty
-      firefox
-      obs-studio
-      piper
-      vscode
-      wezterm
-      quickemu
     ])
     ++ (with pkgs-unstable; [
-      claude-code
     ]);
 }

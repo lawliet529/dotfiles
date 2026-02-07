@@ -22,6 +22,25 @@
   home.packages = (
     with pkgs;
     [
+      antigravity
+      nodejs
+      yarn
+      pnpm
+      gemini-cli
+      yt-dlp
+      jetbrains.idea
+      google-chrome
+      wkhtmltopdf
+      kitty
+      mpv
+      alacritty
+      firefox
+      obs-studio
+      piper
+      vscode
+      wezterm
+      quickemu
+      claude-code
     ]
   );
 

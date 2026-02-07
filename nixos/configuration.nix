@@ -114,7 +114,7 @@
     };
   };
   virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "dat" ];
+  #users.extraGroups.docker.members = [ "dat" ];
 
   # services.nexus.enable = true;
 
@@ -139,6 +139,7 @@
         libsForQt5.qt5.qtwayland
         libGL
         libGLU
+        libgbm
         libpulseaudio
         libxcb
         libxcb-image
@@ -240,6 +241,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
       "kubernetes"
       "adbusers"
     ];
@@ -254,7 +256,11 @@
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
-      gemini-cli-bin
+      cloudflared
+      mise
+      immich-go
+      rqlite
+      pdftk
       trash-cli
       linuxquota
       woff2
@@ -265,9 +271,6 @@
       intel-gpu-tools
       unrar-wrapper
       maven
-      nodejs
-      yarn
-      pnpm
       tmux
       compsize
       gh
@@ -309,7 +312,6 @@
       haveged
       home-manager
       htop
-      immich-cli
       inetutils
       jq
       libossp_uuid
@@ -348,7 +350,6 @@
       zip
     ])
     ++ (with pkgs-unstable; [
-      yt-dlp
     ]);
 
   programs = {
