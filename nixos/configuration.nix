@@ -270,7 +270,6 @@
       minio-client
       intel-gpu-tools
       unrar-wrapper
-      maven
       tmux
       compsize
       gh
@@ -411,10 +410,6 @@
     }
   ];
   networking.extraHosts = "";
-
-  programs.direnv.enable = true;
-  programs.java.enable = true;
-  programs.java.package = pkgs.jdk17;
 
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;

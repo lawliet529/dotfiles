@@ -22,6 +22,9 @@
   home.packages = (
     with pkgs;
     [
+      rustdesk
+      pv
+      maven
       antigravity
       nodejs
       yarn
@@ -43,6 +46,10 @@
       claude-code
     ]
   );
+
+  programs.direnv.enable = true;
+  programs.java.enable = true;
+  programs.java.package = pkgs.jdk17;
 
   services.syncthing = {
     enable = true;
