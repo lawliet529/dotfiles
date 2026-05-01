@@ -1,6 +1,8 @@
 [tools]
-node = "lts"
 yarn = "1"
 pnpm = "latest"
-claude-code = "latest"
-gemini = "latest"
+croc = "latest"
+usage = "latest"
+glow = "latest"
+ollama = "latest"
+claude = "latest"
