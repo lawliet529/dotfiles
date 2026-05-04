@@ -1,8 +1,0 @@
-[tools]
-yarn = "1"
-pnpm = "latest"
-croc = "latest"
-usage = "latest"
-glow = "latest"
-ollama = "latest"
-claude = "latest"
